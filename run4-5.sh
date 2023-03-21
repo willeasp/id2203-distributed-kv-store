@@ -1,0 +1,1 @@
+cargo run --bin id2203-distributed-kv-store -- --id 4 --peers 1 2 3 5

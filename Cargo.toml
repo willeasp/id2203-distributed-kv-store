@@ -1,0 +1,28 @@
+[package]
+name = "id2203-distributed-kv-store"
+version = "0.1.0"
+edition = "2021"
+default-run = "kv_store"
+
+[[bin]]
+name = "kv_store"
+path = "src/main.rs"
+default = true
+
+[[bin]]
+name = "cli_client"
+path = "src/bin/cli_client.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.11.0", features = ["full"] }
+omnipaxos_core = { git = "https://github.com/GGmorello/omnipaxos" }
+omnipaxos_storage = { git = "https://github.com/GGmorello/omnipaxos" }
+structopt = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+bincode = "1.3.3"
+commitlog = "0.2.0"
+sled = "0.34.7"
+axum = "0.6"
+axum-macros = "0.3"
