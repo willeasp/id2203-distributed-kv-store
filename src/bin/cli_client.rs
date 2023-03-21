@@ -1,5 +1,5 @@
 use tokio::net::{TcpListener, TcpStream};
-use tokio::io::{self, AsyncReadExt, AsyncWriteExt};
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 #[path="../util.rs"]
 mod util;

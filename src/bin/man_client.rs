@@ -9,7 +9,7 @@ async fn main() {
     // Spawns a task to print output from the command window
     tokio::spawn(man_listener());
 
-    println!("Ready to read commands");
+    println!("Management client started, waiting for commands");
 
     // TODO move IP into config file?
     let ip = "127.0.0.1";
@@ -48,7 +48,7 @@ async fn man_listener() {
     let port = util::MAN_CLIENT_PORT;
     let addr = format!("{}:{}", ip, port);
 
-    let listener = TcpListener::bind(addr).await.unwrap();
+    let listener = TcpListener::bind(&addr).await.unwrap();
 
     println!("Starting man_client listener on addr: {}", addr);
 
@@ -60,7 +60,7 @@ async fn man_listener() {
             let n = reader.read(&mut buffer).await.unwrap();
             if n == 0 { break; }
             let resized = &buffer[..n];
-            let msg = bincode::deserialize(resized).unwrap();
+            let msg: Vec<u8> = bincode::deserialize(resized).unwrap();
             println!("Response received: {:?}", msg);
         }
     }

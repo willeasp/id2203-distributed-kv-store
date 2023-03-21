@@ -3,17 +3,12 @@ use std::sync::Arc;
 
 use commitlog::LogOptions;
 use omnipaxos_core::{
-    messages::{
-        Message::{BLE, SequencePaxos},
-        sequence_paxos::{PaxosMessage, PaxosMsg::*}
-    },
     omni_paxos::*,
     util::LogEntry::Decided
 };
 use omnipaxos_core::messages::Message;
 use omnipaxos_core::util::LogEntry;
 use omnipaxos_storage::{
-    memory_storage::MemoryStorage,
     persistent_storage::{PersistentStorage, PersistentStorageConfig},
 };
 use serde::{Deserialize, Serialize};
@@ -344,7 +339,7 @@ async fn op_command_handler(
 }
 
 /// Insert decided suffix into the kv_store
-async fn insert_suffix(id: &u64, suffix: Vec<LogEntry<KeyValue, ()>>, kv_store: &Arc<Mutex<KVStore>>) {
+async fn insert_suffix(_: &u64, suffix: Vec<LogEntry<KeyValue, ()>>, kv_store: &Arc<Mutex<KVStore>>) {
     println!("insert_suffix");
     for entry in suffix {
         match entry {

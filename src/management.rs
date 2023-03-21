@@ -98,9 +98,6 @@ async fn handle_rec_message(rec: Option<(String, Vec<u8>)>,
                     match res {
                         Ok(..) => {}
                         Err(..) => eprintln!("failed to send links to sender"),
-                        _ => {
-                            eprintln!("Unrecoginzed result from sending broken links to sender: {:?}", res);
-                        },
                     }
                 }
                 _ => {
